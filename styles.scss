@@ -1,0 +1,9 @@
+@use "ngx-toastr/toastr" as toastr;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.required:after {
+    content: " *";
+    color: red;
+}

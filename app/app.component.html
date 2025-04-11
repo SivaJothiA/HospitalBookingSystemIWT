@@ -1,0 +1,42 @@
+<!-- app.component.html -->
+
+<div class="block">
+  <h2 class="text-center text-3xl font-semibold
+   leading-7 text-green-600 mt-2">
+  Hospital Management Website
+  </h2>
+</div>
+
+<div class="text-sm font-medium text-center
+text-gray-500 border-b border-gray-300">
+  <ul class="flex flex-wrap -mb-px">
+      <li class="me-2">
+          <button class="nav-item inline-block 
+          p-4 text-blue-600 border-b-2 border-blue-600
+           rounded-t-lg active"
+              id="nav-appointments" 
+              (click)="navClick('appointments')">
+              Appointments
+          </button>
+      </li>
+      <li class="me-2">
+          <button id="nav-doctors" 
+          (click)="navClick('doctors')"
+              class="nav-item inline-block p-4 
+              border-b-2 border-transparent rounded-t-lg 
+              hover:text-gray-600 hover:border-gray-300">
+              Doctors
+          </button>
+      </li>
+      <li class="me-2">
+          <button id="nav-patients" 
+          (click)="navClick('patients')"
+              class="nav-item inline-block p-4 border-b-2
+               border-transparent rounded-t-lg hover:text-gray-600
+                hover:border-gray-300">
+              Patients
+          </button>
+      </li>
+  </ul>
+</div>
+<router-outlet></router-outlet>

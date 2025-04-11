@@ -1,0 +1,158 @@
+<!-- components/appointments.component.html -->
+
+<div class="w-full flex justify-center 
+items-center h-screen overflow-y-hidden">
+    <div class="flex justify-center items-start flex-1 pt-12">
+      <div
+        class="max-w-lg w-full h-auto p-6 bg-white
+         border border-gray-200 rounded-lg shadow ml-2 mt-2"
+      >
+        <h2
+          class="text-center text-2xl font-semibold 
+          leading-7 text-blue-600 mb-2"
+        >
+          Add New Appointment
+        </h2>
+        <form class="max-w-md mx-auto">
+          <div class="block mb-5">
+            <label
+              for="patient"
+              class="block mb-2 text-sm font-medium 
+              text-gray-600 required"
+              >Patient</label
+            >
+            <select
+              [(ngModel)]="patient"
+              name="patient"
+              id="patient"
+              class="bg-gray-50 border border-gray-300 
+              text-gray-900 text-sm rounded-lg focus:ring-blue-500
+               focus:border-blue-500 block w-full p-2.5"
+            >
+              <option value="Select" selected>Select</option>
+              <option *ngFor="let patient of PatientsArray">
+                {{ patient.name }}, ({{ patient.age }}) - {{ patient.gender }}
+              </option>
+            </select>
+          </div>
+          <div class="block mb-5">
+            <label
+              for="doctor"
+              class="block mb-2 text-sm font-medium text-gray-600 required"
+              >Doctor</label
+            >
+            <select
+              [(ngModel)]="doctor"
+              name="doctor"
+              id="doctor"
+              class="bg-gray-50 border border-gray-300 text-gray-900 
+              text-sm rounded-lg focus:ring-blue-500 
+              focus:border-blue-500 block w-full p-2.5"
+            >
+              <option value="Select" selected>Select</option>
+              <option *ngFor="let doctor of DoctorsArray">
+                {{ doctor.name }} - {{ doctor.speciality }}
+              </option>
+            </select>
+          </div>
+          <div class="block mb-5">
+            <label
+              for="appointmentDate"
+              class="block mb-2 text-sm font-medium
+               text-gray-600 required"
+              >Appointment Date</label
+            >
+            <input
+              type="date"
+              [(ngModel)]="appointmentDate"
+              name="appointmentDate"
+              id="appointmentDate"
+              class="bg-gray-50 border border-gray-300 
+              text-gray-900 text-sm rounded-lg focus:ring-blue-500
+               focus:border-blue-500 block w-full p-2.5"
+              required
+            />
+          </div>
+          <div class="block">
+            <button
+              *ngIf="!isEditing"
+              type="submit"
+              class="w-full block text-white bg-blue-700 hover:bg-blue-800
+               focus:ring-4 focus:ring-blue-300 font-medium 
+               rounded-lg text-sm px-5 py-2.5 me-2"
+              (click)="onAddClick()"
+            >
+              Add
+            </button>
+            <button
+              *ngIf="isEditing"
+              type="submit"
+              class="w-full block text-white bg-blue-700
+               hover:bg-blue-800 focus:ring-4 focus:ring-blue-300
+                font-medium rounded-lg text-sm px-5 py-2.5 me-2"
+              (click)="onUpdateClick()"
+            >
+              Update
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="flex-none mx-4"></div>
+      <div class="flex-none w-96">
+        <h2
+          class="text-center text-2xl font-semibold
+           leading-7 text-blue-600 my-2"
+        >
+          Appointments ({{ AppointmentsArray.length }})
+        </h2>
+        <div class="h-screen overflow-y-auto">
+          <div *ngFor="let appointment of AppointmentsArray">
+            <div class="h-auto my-2">
+              <div
+                class="bg-white border border-gray-200 rounded-lg
+                 shadow md:max-w-xl hover:bg-gray-100"
+              >
+                <div class="flex flex-col items-center md:flex-row">
+                  <div class="flex flex-col justify-between p-4 leading-normal">
+                    <p class="font-normal text-gray-700">
+                      <b>Patient:</b> {{ appointment.patient }}
+                    </p>
+                    <p class="font-normal text-gray-700">
+                      <b>Doctor:</b> {{ appointment.doctor }}
+                    </p>
+                    <p class="font-normal text-gray-700">
+                      <b>Date:</b>
+                      {{ appointment.appointmentDate | date : "fullDate" }}
+                    </p>
+                  </div>
+                </div>
+                <div class="flex items-center justify-center gap-x-3 mb-2">
+                  <button
+                    type="button"
+                    class="rounded-md bg-yellow-500 px-5 py-2 text-sm 
+                    font-semibold text-white shadow-sm hover:bg-yellow-400 
+                    focus-visible:outline focus-visible:outline-2 
+                    focus-visible:outline-offset-2 focus-visible:outline-yellow-600"
+                    (click)="onEditAppointment(appointment._id)"
+                  >
+                    Edit
+                  </button>
+                  <button
+                    type="button"
+                    class="rounded-md bg-red-600 px-3 py-2 text-sm
+                     font-semibold text-white shadow-sm hover:bg-red-500
+                      focus-visible:outline focus-visible:outline-2
+                       focus-visible:outline-offset-2 focus-visible:outline-red-600"
+                    (click)="onDeleteAppointment(appointment._id)"
+                  >
+                    Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
